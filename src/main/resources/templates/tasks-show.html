@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Show</h1>
+        <form action="/tasks/update">
+            <input type="hidden" name="id" th:value="${task.id}">
+            <p>
+                Activity:
+            </p>
+
+            <textarea rows="10" 
+                      th:field = "${task.activity}"  
+                      name="activity">
+            </textarea>
+            <p>
+                Date:    
+            </p>
+            <input type="date"  name="date" th:value="${task.date}" />
+            <p>
+                Time:
+            </p>
+            <input type="time" name="time" th:value="${task.time}" />
+
+            <p></p>
+
+            <button type="submit">update</button>
+        </form>
+    </body>
+</html>

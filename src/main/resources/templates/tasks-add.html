@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Add Tasks</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1> Add activity:</h1>
+        <form action="/tasks/create">
+            <p>
+                Activity:
+            </p>
+
+            <textarea rows="10" name="activity" placeholder="Your activity">
+
+            </textarea>
+            <p>
+                Date:    
+            </p>
+            <input type="date" name="date" value="" />
+            <p>
+                Time:
+            </p>
+            <input type="time" name="time" value="" />
+
+            <p></p>
+
+            <button type="submit">Save</button>
+        </form>
+    </body>
+</html>

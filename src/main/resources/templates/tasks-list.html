@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Tasks</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <p>
+            <a href="/tasks/add/">+ New Task</a>
+        </p>
+        <table border="1">
+            <tr>
+                <th>Activity </th>
+                <th>Date </th>
+                <th>Time </th>
+            </tr>
+            <th:block th:each="task : ${tasks}">
+                <tr>
+                    <td th:text="${task.activity}">...</td>
+                    <td th:text="${task.date}">...</td>
+                    <td th:text="${task.time}">...</td>
+                    <td> <a th:href=" @{/tasks/show(id=${task.id})}">Edit</a> </td>
+                    <td> <a th:href=" @{/tasks/confirm(id=${task.id})}">Delete</a> </td>
+                </tr>
+            </th:block>
+        </table>
+    </body>
+</html>
