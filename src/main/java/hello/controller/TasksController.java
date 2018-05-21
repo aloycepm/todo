@@ -26,6 +26,11 @@ public class TasksController {
     @Autowired
     private TasksRepository tasksRepository;
 
+    @GetMapping(path = "/")
+    public RedirectView index() {
+        return new RedirectView("/tasks/list");
+    }
+
     @GetMapping(path = "/list")
     public String listTasks(Model model) {
         model.addAttribute("tasks", tasksRepository.findAll());
