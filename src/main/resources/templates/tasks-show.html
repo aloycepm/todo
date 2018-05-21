@@ -13,7 +13,10 @@ and open the template in the editor.
     <body>
         <h1 th:text=" ' Task of '+ ${task.date}"></h1>
          <p>
-            <a href="/tasks/list"><< Back</a>
+            <a href="/tasks/list">+ List</a>
+        </p>
+        <p>
+            <a href="/tasks/add">+ New Task</a>
         </p>
         <form action="/tasks/update">
             <input type="hidden" name="id" th:value="${task.id}">
