@@ -11,7 +11,7 @@ import hello.model.User;
  *
  * @author Ecyola
  */
-interface UserService {
+public interface UserService {
     void save(User user);
 
     User findByUsername(String username);
