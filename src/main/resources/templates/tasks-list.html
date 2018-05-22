@@ -17,6 +17,9 @@ and open the template in the editor.
         <p>
             <a href="/tasks/add/">+ New Task</a>
         </p>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
         <table border="1">
             <tr>
                 <th>Activity </th>
@@ -33,5 +36,6 @@ and open the template in the editor.
                 </tr>
             </th:block>
         </table>
+         
     </body>
 </html>
