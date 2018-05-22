@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package hello.model;
+
 import java.util.Set;
 import javax.persistence.*;
 
@@ -19,10 +20,11 @@ public class User {
     private Long id;
     private String username;
     private String password;
+    @Transient
     private String passwordConfirm;
     @ManyToMany
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
-    private Set<Role> roles;
+    private Set<Role> role;
 
     public Long getId() {
         return id;
@@ -56,12 +58,12 @@ public class User {
         this.passwordConfirm = passwordConfirm;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
+    public Set<Role> getRole() {
+        return role;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public void setRole(Set<Role> role) {
+        this.role = role;
     }
 
 }

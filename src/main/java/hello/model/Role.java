@@ -23,8 +23,8 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    @ManyToMany(mappedBy = "roles")
-    private Set<User> users;
+    @ManyToMany(mappedBy = "role")
+    private Set<User> user;
 
     public Long getId() {
         return id;
@@ -43,11 +43,11 @@ public class Role {
     }
 
     public Set<User> getUsers() {
-        return users;
+        return user;
     }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
+    public void setUsers(Set<User> user) {
+        this.user = user;
     }
 
 }

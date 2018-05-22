@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hello.repository;
+package hello.service;
 
 import hello.model.User;
-import org.springframework.data.repository.CrudRepository;
 
 /**
  *
  * @author Ecyola
  */
-public interface UserRepository extends CrudRepository<User, Long>{
+interface UserService {
+    void save(User user);
+
     User findByUsername(String username);
 }
