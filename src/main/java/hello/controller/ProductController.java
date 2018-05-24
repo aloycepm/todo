@@ -7,7 +7,6 @@ package hello.controller;
 
 import hello.domain.Product;
 import hello.service.ProductService;
-import javax.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author Ecyola
  */
 @Controller
+@RequestMapping("/product")
 public class ProductController {
 
     private ProductService productService;
@@ -29,29 +29,47 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @RequestMapping("/products")
+    @RequestMapping({"/list", "/"})
     public String listProducts(Model model) {
 
-        model.addAttribute("products", productService.listAllProduct());
+        model.addAttribute("products", productService.listAll());
 
-        return "products";
+        return "products/product-list";
     }
 
-    @RequestMapping("/product/{id}")
+    @RequestMapping("/{id}")
     public String getProduct(@PathVariable Integer id, Model model) {
 
-        model.addAttribute("product", productService.getProductById(id));
+        model.addAttribute("product", productService.getById(id));
 
-        return "product";
+        return "products/product";
     }
 
-    @RequestMapping("/product/new")
+    @RequestMapping("/edit/{id}")
+    public String edit(@PathVariable Integer id, Model model) {
+
+        model.addAttribute("product", productService.getById(id));
+
+        return "products/product-form";
+    }
+
+    @RequestMapping("/delete/{id}")
+    public String delete(@PathVariable Integer id) {
+
+        productService.delete(id);
+
+        return "redirect:/product/list";
+    }
+
+    @RequestMapping("/new")
     public String newProduct(Model model) {
+
         model.addAttribute("product", new Product());
-        return "productform";
+
+        return "products/product-form";
     }
 
-    @RequestMapping(value = "/product", method = RequestMethod.POST)
+    @RequestMapping(value = "/", method = RequestMethod.POST)
     public String saveOrUpdateProduct(Product product) {
         Product savedProduct = productService.saveOrUpdate(product);
         return "redirect:/product/" + savedProduct.getId();

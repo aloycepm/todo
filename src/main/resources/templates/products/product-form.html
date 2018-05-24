@@ -22,7 +22,7 @@ and open the template in the editor.
             <div class="row">
                 <div class="col-md-6">
                     <h2>Product Details</h2>
-                    <a href="/products" class="btn btn-dark">List</a>
+                    <a href="/list" class="btn btn-dark">List</a>
                 </div>
             </div>
             <div class="row">
@@ -31,7 +31,7 @@ and open the template in the editor.
                           th:object="${product}" 
                           method="post" 
                           th:action="@{/product}">
-                        <input type="hidden" name="productid" th:value="*{id}"/>
+                        <input type="hidden" name="id" th:value="*{id}"/>
 
                         <div class="form-group">
                             <label class="control-label">
@@ -49,7 +49,7 @@ and open the template in the editor.
                             <label class="control-label">
                                 Image URL
                             </label>
-                            <input type="text" name="imageUrl" class="form-control" th:text="*{imageUrl}">
+                            <input type="text" name="imageUrl" class="form-control" th:value="*{imageUrl}">
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-default">Submit</button>

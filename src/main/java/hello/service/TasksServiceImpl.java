@@ -6,7 +6,7 @@
 package hello.service;
 
 import hello.Tasks;
-import java.util.ArrayList;
+import hello.domain.Product;
 import java.util.List;
 import java.util.Map;
 import org.springframework.stereotype.Service;
@@ -24,8 +24,25 @@ public class TasksServiceImpl implements TasksService {
     }
 
     @Override
-    public List<Tasks> listAllTasks() {
-        return new ArrayList<>(Tasks.values());
+    public List<?> listAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public Product getById(Integer id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Product saveOrUpdate(Product domainObject) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void delete(Integer id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+  
 
 }

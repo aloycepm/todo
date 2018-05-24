@@ -11,17 +11,19 @@ import java.math.BigDecimal;
  *
  * @author Ecyola
  */
-public class Product {
+public class Product implements DomainObject{
 
     private Integer id;
     private String description;
     private BigDecimal price;
     private String imageUrl;
 
+    @Override
     public Integer getId() {
         return id;
     }
 
+    @Override
     public void setId(Integer id) {
         this.id = id;
     }

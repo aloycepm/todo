@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hello.service;
-
-import hello.Tasks;
-import java.util.List;
+package hello.domain;
 
 /**
  *
  * @author Ecyola
  */
-public interface TasksService  extends ProductService{
+public interface DomainObject {
+
+    Integer getId();
+
+    void setId(Integer id);
 }

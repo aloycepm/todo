@@ -29,12 +29,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> listAllProduct() {
+    public List<Product> listAll() {
         return new ArrayList<>(products.values());
     }
 
     @Override
-    public Product getProductById(Integer id) {
+    public Product getById(Integer id) {
         return products.get(id);
     }
 
@@ -49,10 +49,17 @@ public class ProductServiceImpl implements ProductService {
 
             return product;
         } else {
-            throw new RuntimeException("product can't br null");
+            throw new RuntimeException("product can't be null");
         }
     }
 
+    @Override
+    public void delete(Integer id) {
+        products.remove(id);
+    }
+
+    
+    
     private Integer getMaxKey() {
         return Collections.max(products.keySet()) + 1;
     }

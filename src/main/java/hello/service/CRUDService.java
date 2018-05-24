@@ -5,12 +5,19 @@
  */
 package hello.service;
 
-import hello.Tasks;
 import java.util.List;
 
 /**
  *
  * @author Ecyola
  */
-public interface TasksService  extends ProductService{
+public interface CRUDService<T> {
+
+    List<?> listAll();
+
+    T getById(Integer id);
+
+    T saveOrUpdate(T domainObject);
+
+    void delete(Integer id);
 }
