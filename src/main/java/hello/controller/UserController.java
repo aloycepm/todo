@@ -5,7 +5,7 @@
  */
 package hello.controller;
 
-import hello.model.User;
+import hello.domain.User;
 import hello.repository.UserRepository;
 import hello.validator.UserValidator;
 //import hello.service.SecurityService;

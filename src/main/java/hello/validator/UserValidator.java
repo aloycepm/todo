@@ -5,7 +5,7 @@
  */
 package hello.validator;
 
-import hello.model.User;
+import hello.domain.User;
 import hello.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

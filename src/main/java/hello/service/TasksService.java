@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hello.repository;
+package hello.service;
 
-import hello.domain.User;
-import org.springframework.data.repository.CrudRepository;
+import hello.Tasks;
+import java.util.List;
 
 /**
  *
  * @author Ecyola
  */
-public interface UserRepository extends CrudRepository<User, Long>{
-    User findByUsername(String username);
+public interface TasksService {
+
+    List<Tasks> listAllTasks();
 }

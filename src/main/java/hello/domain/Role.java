@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hello.model;
+package hello.domain;
 
 import java.util.Set;
 import javax.persistence.Entity;

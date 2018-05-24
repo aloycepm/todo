@@ -7,6 +7,7 @@ package hello.controller;
 
 import hello.Tasks;
 import hello.repository.TasksRepository;
+import hello.service.TasksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,8 +24,19 @@ import org.springframework.web.servlet.view.RedirectView;
 @RequestMapping(path = "/tasks")
 public class TasksController {
 
-    @Autowired
+    private TasksService tasksService;
+
     private TasksRepository tasksRepository;
+
+    @Autowired
+    public void setTasksRepository(TasksRepository tasksRepository) {
+        this.tasksRepository = tasksRepository;
+    }
+
+    @Autowired
+    public void setTasksService(TasksService tasksService) {
+        this.tasksService = tasksService;
+    }
 
     @GetMapping(path = "/")
     public RedirectView index() {
