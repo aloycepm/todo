@@ -25,6 +25,8 @@ public class User {
     @ManyToMany
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     private Set<Role> role;
+    @Version
+    private Integer version;
 
     public Long getId() {
         return id;
@@ -64,6 +66,14 @@ public class User {
 
     public void setRole(Set<Role> role) {
         this.role = role;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 
 }

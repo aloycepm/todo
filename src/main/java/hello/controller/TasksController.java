@@ -5,13 +5,11 @@
  */
 package hello.controller;
 
-import hello.Tasks;
-import hello.repository.TasksRepository;
+import hello.domain.Tasks;
 import hello.service.TasksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
@@ -26,11 +24,9 @@ public class TasksController {
 
     private TasksService tasksService;
 
-    private TasksRepository tasksRepository;
-
     @Autowired
-    public void setTasksRepository(TasksRepository tasksRepository) {
-        this.tasksRepository = tasksRepository;
+    public void setTasksRepository(TasksService tasksService) {
+        this.tasksService = tasksService;
     }
 
     @Autowired
@@ -38,32 +34,27 @@ public class TasksController {
         this.tasksService = tasksService;
     }
 
-    @GetMapping(path = "/")
-    public RedirectView index() {
-        return new RedirectView("/tasks/list");
-    }
-
-    @GetMapping(path = "/list")
+    @RequestMapping({"/list", "/"})
     public String listTasks(Model model) {
-        model.addAttribute("tasks", tasksRepository.findAll());
-        return "tasks-list";
+        model.addAttribute("tasks", tasksService.findAll());
+        return "tasks/tasks-list";
     }
 
-    @GetMapping(path = "/add")
+    @RequestMapping("/add")
     public String add(Model model) {
-        return "tasks-add";
+        return "tasks/tasks-add";
     }
 
-    @GetMapping(path = "/confirm")
+    @RequestMapping("/confirm")
     public String confirm(@RequestParam String id,
             Model model) {
         Integer ID = Integer.parseInt(id);
         model.addAttribute("task",
-                tasksRepository.findById(ID).get());
-        return "tasks-confirm-delete";
+                tasksService.findById(ID).get());
+        return "tasks/tasks-confirm-delete";
     }
 
-    @GetMapping(path = "/create")
+    @RequestMapping("/create")
     public RedirectView create(
             @RequestParam(required = true) String activity,
             @RequestParam(required = true) String date,
@@ -74,19 +65,19 @@ public class TasksController {
         t.setActivity(activity);
         t.setDate(date);
         t.setTime(time);
-        tasksRepository.save(t);
+        tasksService.save(t);
         return new RedirectView("/tasks/list");
     }
 
-    @GetMapping(path = "/show")
+    @RequestMapping("/show")
     public String show(@RequestParam String id,
             Model model) {
         Integer ID = Integer.parseInt(id);
-        model.addAttribute("task", tasksRepository.findById(ID).get());
-        return "tasks-show";
+        model.addAttribute("task", tasksService.findById(ID).get());
+        return "tasks/tasks-show";
     }
 
-    @GetMapping(path = "/update")
+    @RequestMapping("/update")
     public RedirectView update(
             @RequestParam(required = true) String id,
             @RequestParam(required = true) String activity,
@@ -96,19 +87,19 @@ public class TasksController {
     ) {
 
         Integer ID = Integer.parseInt(id);
-        Tasks t = tasksRepository.findById(ID).get();
+        Tasks t = tasksService.findById(ID).get();
         t.setActivity(activity);
         t.setDate(date);
         t.setTime(time);
-        tasksRepository.save(t);
+        tasksService.save(t);
 
         return new RedirectView("/tasks/list");
     }
 
-    @GetMapping(path = "/delete")
+    @RequestMapping("/delete")
     public RedirectView delete(@RequestParam String id) {
         Integer ID = Integer.parseInt(id);
-        tasksRepository.deleteById(ID);
+        tasksService.deleteById(ID);
         return new RedirectView("/tasks/list");
     }
 

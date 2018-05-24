@@ -3,15 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hello.repository;
+package hello.service;
 
-import hello.Tasks;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Ecyola
  */
-public interface TasksRepository extends CrudRepository<Tasks, Integer> {
+@Service
+@Profile("jpadao")
+public class CustomerServiceImpl {
     
 }

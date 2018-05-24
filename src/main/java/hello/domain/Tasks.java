@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hello;
-
+package hello.domain;
 
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Version;
 
 /**
  *
@@ -18,12 +18,15 @@ import javax.persistence.Id;
  */
 @Entity
 public class Tasks {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String activity;
-    private  String date;
+    private String date;
     private String time;
+    @Version
+    private Integer version;
 
     public Integer getId() {
         return id;
@@ -57,7 +60,12 @@ public class Tasks {
         this.time = time;
     }
 
+    public Integer getVersion() {
+        return version;
+    }
 
-    
-    
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
+
 }

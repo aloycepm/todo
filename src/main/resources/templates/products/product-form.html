@@ -32,7 +32,7 @@ and open the template in the editor.
                           method="post" 
                           th:action="@{/product}">
                         <input type="hidden" name="id" th:value="*{id}"/>
-
+                        <input type="hidden" name="version" th:value="*{version}"/>
                         <div class="form-group">
                             <label class="control-label">
                                 Description

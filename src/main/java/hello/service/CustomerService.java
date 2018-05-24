@@ -5,12 +5,10 @@
  */
 package hello.service;
 
-import hello.domain.Tasks;
-import org.springframework.data.repository.CrudRepository;
-
 /**
  *
  * @author Ecyola
  */
-public interface TasksService extends CrudRepository<Tasks, Integer> {
+public interface CustomerService {
+    
 }
