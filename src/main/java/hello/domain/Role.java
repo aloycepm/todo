@@ -5,6 +5,7 @@
  */
 package hello.domain;
 
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +25,7 @@ public class Role {
     private Long id;
     private String name;
     @ManyToMany(mappedBy = "role")
-    private Set<User> user;
+    private List<User> user;
 
     public Long getId() {
         return id;
@@ -42,11 +43,11 @@ public class Role {
         this.name = name;
     }
 
-    public Set<User> getUsers() {
+    public List<User> getUsers() {
         return user;
     }
 
-    public void setUsers(Set<User> user) {
+    public void setUsers(List<User> user) {
         this.user = user;
     }
 

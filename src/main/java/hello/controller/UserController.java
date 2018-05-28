@@ -5,9 +5,14 @@
  */
 package hello.controller;
 
+import hello.domain.Role;
 import hello.domain.User;
+import hello.repository.RoleRepository;
 import hello.repository.UserRepository;
 import hello.validator.UserValidator;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 //import hello.service.SecurityService;
 //import hello.service.UserService;
 //import hello.validator.UserValidator;
@@ -16,6 +21,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.view.RedirectView;
@@ -32,19 +38,34 @@ public class UserController {
     private UserRepository userRepository;
 
     @Autowired
-    private UserValidator userValidator;
+    private RoleRepository roleRepository;
 
-    @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public String registartion(Model model) {
-        model.addAttribute("userform", new User());
-        return "registration";
+    @RequestMapping({"/", "/list"})
+    public String listUsers(Model model) {
+        model.addAttribute("users", userRepository.findAll());
+        return "users/user-list";
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/new", method = RequestMethod.GET)
+    public String registartion(Model model) {
+        User user = new User();
+        user.setRole((List<Role>) roleRepository.findAll());
+        model.addAttribute("user", user);
+        return "users/user-form";
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.POST)
     public String register(@ModelAttribute("user") User user, Model model) {
-        model.addAttribute("username", user.getUsername());
-        return "registration";
-//new RedirectView("/login");
+
+        userRepository.save(user);
+        model.addAttribute("user", user);
+        return "users/user";
+    }
+
+    @RequestMapping("/{id}")
+    public String getUser(@PathVariable(name = "id") Long id, Model model) {
+        model.addAttribute("user", userRepository.findById(id).get());
+        return "users/user";
     }
 
 }

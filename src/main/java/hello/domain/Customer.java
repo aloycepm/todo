@@ -5,10 +5,16 @@
  */
 package hello.domain;
 
+import java.util.List;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Version;
 
 /**
@@ -30,7 +36,10 @@ public class Customer implements DomainObject {
     private String region;
     private String location;
     private String postalCode;
-    
+
+    @ManyToMany(mappedBy = "customer")
+    private Set<Product> product;
+
     @Version
     private Integer version;
 
@@ -114,6 +123,14 @@ public class Customer implements DomainObject {
 
     public void setVersion(Integer version) {
         this.version = version;
+    }
+
+    public Set<Product> getProduct() {
+        return product;
+    }
+
+    public void setProduct(Set<Product> product) {
+        this.product = product;
     }
 
 }

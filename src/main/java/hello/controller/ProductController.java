@@ -6,6 +6,7 @@
 package hello.controller;
 
 import hello.domain.Product;
+import hello.repository.ProductRepository;
 import hello.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ProductController {
 
     private ProductService productService;
+    
+    private ProductRepository productRepository;
+
+    @Autowired
+    public void setProductRepository(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     @Autowired
     public void setProductService(ProductService productService) {
@@ -32,7 +40,7 @@ public class ProductController {
     @RequestMapping({"/list", "/"})
     public String listProducts(Model model) {
 
-        model.addAttribute("products", productService.listAll());
+        model.addAttribute("products", productRepository.findAll());
 
         return "products/product-list";
     }
@@ -40,7 +48,7 @@ public class ProductController {
     @RequestMapping("/{id}")
     public String getProduct(@PathVariable Integer id, Model model) {
 
-        model.addAttribute("product", productService.getById(id));
+        model.addAttribute("product", productRepository.findById(id).get());
 
         return "products/product";
     }
@@ -48,7 +56,7 @@ public class ProductController {
     @RequestMapping("/edit/{id}")
     public String edit(@PathVariable Integer id, Model model) {
 
-        model.addAttribute("product", productService.getById(id));
+        model.addAttribute("product", productRepository.findById(id).get());
 
         return "products/product-form";
     }
@@ -56,7 +64,7 @@ public class ProductController {
     @RequestMapping("/delete/{id}")
     public String delete(@PathVariable Integer id) {
 
-        productService.delete(id);
+        productRepository.deleteById(id);
 
         return "redirect:/product/list";
     }
@@ -71,7 +79,7 @@ public class ProductController {
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public String saveOrUpdateProduct(Product product) {
-        Product savedProduct = productService.saveOrUpdate(product);
+        Product savedProduct = productRepository.save(product);
         return "redirect:/product/" + savedProduct.getId();
     }
 }

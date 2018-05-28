@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 /**
@@ -34,8 +35,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product getById(Integer id) {
-        return products.get(id);
+    public Optional<Product> getById(Integer id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

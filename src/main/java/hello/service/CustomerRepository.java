@@ -5,15 +5,13 @@
  */
 package hello.service;
 
-import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Service;
+import hello.domain.Customer;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author Ecyola
  */
-@Service
-@Profile("jpadao")
-public class CustomerServiceImpl {
+public interface CustomerRepository extends JpaRepository<Customer, Integer>{
     
 }

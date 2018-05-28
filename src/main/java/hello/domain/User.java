@@ -5,6 +5,7 @@
  */
 package hello.domain;
 
+import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
 
@@ -24,7 +25,7 @@ public class User {
     private String passwordConfirm;
     @ManyToMany
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
-    private Set<Role> role;
+    private List<Role> role;
     @Version
     private Integer version;
 
@@ -60,11 +61,11 @@ public class User {
         this.passwordConfirm = passwordConfirm;
     }
 
-    public Set<Role> getRole() {
+    public List<Role> getRole() {
         return role;
     }
 
-    public void setRole(Set<Role> role) {
+    public void setRole(List<Role> role) {
         this.role = role;
     }
 

@@ -22,7 +22,7 @@ and open the template in the editor.
             <div class="row">
                 <div class="col-md-6">
                     <h2>Product Details</h2>
-                    <a href="/list" class="btn btn-dark">List</a>
+                    <a href="/product/list" class="btn btn-dark">List</a>
                 </div>
             </div>
             <div class="row">
@@ -30,7 +30,7 @@ and open the template in the editor.
                     <form class="form-horizontal" 
                           th:object="${product}" 
                           method="post" 
-                          th:action="@{/product}">
+                          th:action="@{/product/}">
                         <input type="hidden" name="id" th:value="*{id}"/>
                         <input type="hidden" name="version" th:value="*{version}"/>
                         <div class="form-group">
